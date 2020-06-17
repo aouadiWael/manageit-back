@@ -11,7 +11,6 @@ import javax.persistence.Id;
 @Data
 public class RoleDto {
 
-	@Id
 	private Long id;
 	private String code;
 	private String label;

@@ -53,7 +53,7 @@ public class RoleController {
 
 	/**
 	 * @param roleDto
-	 * @return
+	 * @return Role Entity
 	 */
 	public Role convertToEntity(RoleDto roleDto) {
 		return modelMapper.map(roleDto, Role.class);
