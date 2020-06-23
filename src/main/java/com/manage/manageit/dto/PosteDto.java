@@ -1,7 +1,6 @@
 package com.manage.manageit.dto;
 
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.List;
 

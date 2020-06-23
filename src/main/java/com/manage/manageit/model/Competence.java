@@ -1,7 +1,6 @@
 package com.manage.manageit.model;
 
 import lombok.Data;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 

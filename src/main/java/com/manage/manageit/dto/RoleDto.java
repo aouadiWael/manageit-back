@@ -2,7 +2,7 @@ package com.manage.manageit.dto;
 
 import lombok.Data;
 
-import javax.persistence.Id;
+import java.util.List;
 
 /**
  * @Author Wael AOUADI
@@ -14,4 +14,5 @@ public class RoleDto {
 	private Long id;
 	private String code;
 	private String label;
+	private List<EmployeDto> employeDtos;
 }

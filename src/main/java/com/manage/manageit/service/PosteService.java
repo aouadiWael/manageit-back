@@ -1,6 +1,5 @@
 package com.manage.manageit.service;
 
-import com.manage.manageit.model.Competence;
 import com.manage.manageit.model.Poste;
 
 import java.util.List;
@@ -11,5 +10,6 @@ import java.util.List;
  */
 public interface PosteService {
 	Poste savePoste(Poste poste);
+
 	List<Poste> findAll();
 }

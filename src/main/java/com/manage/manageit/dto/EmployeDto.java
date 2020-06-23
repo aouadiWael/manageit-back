@@ -21,6 +21,6 @@ public class EmployeDto {
 	private String adresse;
 	private String tel;
 	private Date dateDebutExp;
-	private Poste poste;
-	private Role role;
+	private PosteDto poste;
+	private RoleDto role;
 }
