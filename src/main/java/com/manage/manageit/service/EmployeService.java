@@ -3,6 +3,7 @@ package com.manage.manageit.service;
 import com.manage.manageit.model.Employe;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author Wael AOUADI
@@ -12,4 +13,6 @@ public interface EmployeService {
 	Employe saveEmploye(Employe employe);
 
 	List<Employe> findAll();
+
+	Optional<Employe> findById(Long id);
 }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author Wael AOUADI
@@ -25,7 +26,7 @@ public class EmployeController {
 
 	@ApiOperation(value = "Ajouter un employé")
 	@PostMapping(path = "/", produces = "application/json")
-	public ResponseEntity<EmployeDto> saveRole(@RequestBody Employe employe) {
+	public ResponseEntity<EmployeDto> saveEmploye(@RequestBody Employe employe) {
 
 		try {
 			employeService.saveEmploye(employe);
@@ -35,6 +36,18 @@ public class EmployeController {
 		}
 
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "Chercher un employé par id")
+	@GetMapping(path = "/{id}", produces = "application/json")
+	public ResponseEntity<Employe> getEmployeById(@PathVariable("id") Long id) {
+		Optional<Employe> result = employeService.findById(id);
+
+		if (result.isPresent()) {
+			return new ResponseEntity<>(result.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 

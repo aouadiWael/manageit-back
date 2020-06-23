@@ -17,6 +17,7 @@ public class EmployeDto {
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
+	private String mail;
 	private String adresse;
 	private String tel;
 	private Date dateDebutExp;

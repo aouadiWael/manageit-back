@@ -1,8 +1,6 @@
 package com.manage.manageit.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
@@ -18,7 +16,7 @@ import java.util.Date;
 
 @Entity
 @Data
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 public class Employe implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +25,7 @@ public class Employe implements Serializable {
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
+	private String mail;
 	private String adresse;
 	private String tel;
 	private Date dateDebutExp;

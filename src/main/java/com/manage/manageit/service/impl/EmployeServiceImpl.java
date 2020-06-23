@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author Wael AOUADI
@@ -27,5 +28,10 @@ public class EmployeServiceImpl implements EmployeService {
 	@Override
 	public List<Employe> findAll() {
 		return employeRepository.findAll();
+	}
+
+	@Override
+	public Optional<Employe> findById(Long id) {
+		return employeRepository.findById(id);
 	}
 }
