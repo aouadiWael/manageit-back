@@ -26,9 +26,15 @@ public class Employe implements Serializable {
 	private String prenom;
 	private Date dateNaissance;
 	private String mail;
-	private String adresse;
 	private String tel;
 	private Date dateDebutExp;
+	private int numRue;
+	private String rue;
+	private int codePostal;
+	private String complementAdresse;
+	private String ville;
+	private String pays;
+	private String nationalite;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "poste_id")
 	private Poste poste;
