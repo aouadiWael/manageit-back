@@ -15,4 +15,6 @@ public interface EmployeService {
 	List<Employe> findAll();
 
 	Optional<Employe> findById(Long id);
+
+	Employe updateEmploye(Long id, Employe employe);
 }

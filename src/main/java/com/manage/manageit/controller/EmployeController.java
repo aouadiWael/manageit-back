@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,11 +40,11 @@ public class EmployeController {
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@ApiOperation(value = "Chercher un employé par id")
-	@GetMapping(path = "/{id}", produces = "application/json")
+	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<EmployeDto> getEmployeById(@PathVariable("id") Long id) {
 		Optional<Employe> result = employeService.findById(id);
 
@@ -55,8 +56,19 @@ public class EmployeController {
 	}
 
 
+	@ApiOperation(value = "Mettre à jour un employé")
+	@PutMapping(path = "/employe/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<EmployeDto> updateEmploye(@PathVariable("id") Long id,
+	                                                @RequestBody EmployeDto employeDto) {
+
+		Employe updatedEmploye = employeService.updateEmploye(id, convertToEntity(employeDto));
+		return new ResponseEntity<>(convertToDto(updatedEmploye), HttpStatus.OK);
+
+	}
+
+
 	@ApiOperation(value = "Liste des employés")
-	@GetMapping(path = "/", produces = "application/json")
+	@GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<EmployeDto>> findAll() {
 		List<EmployeDto> result = employeService.findAll().stream().map(this::convertToDto).collect(Collectors.toList());
 		return new ResponseEntity<>(result, HttpStatus.OK);
