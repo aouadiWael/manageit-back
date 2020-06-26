@@ -27,6 +27,7 @@ public class EmployeDto {
 	private String ville;
 	private String pays;
 	private String nationalite;
+	private byte[] photoProfil;
 	private PosteDto poste;
 	private RoleDto role;
 }

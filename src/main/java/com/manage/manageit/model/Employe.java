@@ -3,6 +3,7 @@ package com.manage.manageit.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,6 +36,8 @@ public class Employe implements Serializable {
 	private String ville;
 	private String pays;
 	private String nationalite;
+	@Type(type="org.hibernate.type.BinaryType")
+	private byte[] photoProfil;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "poste_id")
 	private Poste poste;

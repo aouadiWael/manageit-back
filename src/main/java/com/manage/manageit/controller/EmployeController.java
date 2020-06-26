@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,8 +60,7 @@ public class EmployeController {
 	@ApiOperation(value = "Mettre à jour un employé")
 	@PutMapping(path = "/employe/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<EmployeDto> updateEmploye(@PathVariable("id") Long id,
-	                                                @RequestBody EmployeDto employeDto) {
-
+	                                                @RequestBody EmployeDto employeDto) throws IOException {
 		Employe updatedEmploye = employeService.updateEmploye(id, convertToEntity(employeDto));
 		return new ResponseEntity<>(convertToDto(updatedEmploye), HttpStatus.OK);
 
@@ -87,7 +87,27 @@ public class EmployeController {
 	 * @param employeDto
 	 * @return employe Entity
 	 */
-	public Employe convertToEntity(EmployeDto employeDto) {
-		return modelMapper.map(employeDto, Employe.class);
+	public Employe convertToEntity(EmployeDto employeDto) throws IOException {
+		Employe employe = modelMapper.map(employeDto, Employe.class);
+		/*byte[] image = getImage();
+		employe.setPhotoProfil(image);*/
+
+		return employe;
 	}
+
+
+	/*public static byte[] getImage() {
+		File file =new File("C:\\Users\\33778\\Desktop\\profile.jpg");
+		if(file.exists()){
+			try {
+				BufferedImage bufferedImage= ImageIO.read(file);
+				ByteArrayOutputStream byteOutStream=new ByteArrayOutputStream();
+				ImageIO.write(bufferedImage, "jpg", byteOutStream);
+				return byteOutStream.toByteArray();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}*/
 }
