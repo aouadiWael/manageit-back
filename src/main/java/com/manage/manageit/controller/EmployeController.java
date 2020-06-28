@@ -5,6 +5,8 @@ import com.manage.manageit.model.Employe;
 import com.manage.manageit.service.EmployeService;
 import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +32,8 @@ public class EmployeController {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeController.class);
+
 
 	@ApiOperation(value = "Ajouter un employé")
 	@PostMapping(path = "/", produces = "application/json")
@@ -47,6 +51,7 @@ public class EmployeController {
 	@ApiOperation(value = "Chercher un employé par id")
 	@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<EmployeDto> getEmployeById(@PathVariable("id") Long id) {
+		LOGGER.info("Get employé ID : " + id);
 		Optional<Employe> result = employeService.findById(id);
 
 		if (result.isPresent()) {
